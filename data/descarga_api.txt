@@ -1,0 +1,28 @@
+
+TOKEN: LdPn6tpkstYsBwkY53saQAkzOuksMpu2fL9QYl59PtxGeMXuUedDHJmJwqDyGSX3
+
+
+<div style="min-height:500px"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/1DJlz/embed.js?v=1" charset="utf-8"></script><noscript><img src="https://datawrapper.dwcdn.net/1DJlz/full.png" alt="" /></noscript></div>
+
+
+<iframe title="[ Insert title here ]" aria-label="Interactive line chart" id="datawrapper-chart-1DJlz" src="https://datawrapper.dwcdn.net/1DJlz/1/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="500" data-external="1"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r=0;r<e.length;r++)if(e[r].contentWindow===a.source){var i=a.data["datawrapper-height"][t]+"px";e[r].style.height=i}}}))}();
+</script>
+
+
+curl --request GET \--url 'https://api.datawrapper.de/v3/charts/1DJlz/data' \--header 'Authorization: Bearer MPqtDNCpWoqnObkYv1ApHBd5Uju8V7e59KI5rQ0uopHjjp9hgahkKctuSJelTvjg' \
+
+wget --header="Authorization: Bearer <MPqtDNCpWoqnObkYv1ApHBd5Uju8V7e59KI5rQ0uopHjjp9hgahkKctuSJelTvjg>" 'https://datawrapper.dwcdn.net/3Fh1f/1/'
+--2024-03-14 15:11:03--  https://datawrapper.dwcdn.net/3Fh1f/1/data
+
+
+wget --header="Authorization: Bearer <kLqLtBoRMkzWlSaQptxBPZNJKnh6V3nmnA3DnnSFREr78Fxj5NtNTSXeonkx8Brn>" 'https://api.datawrapper.de/v3/charts/1DJlz/data'
+
+
+
+
+3Fh1f
+
+
+curl --request GET \--url 'https://api.datawrapper.de/v3/charts/1DJlz/data' \--header 'Authorization: Bearer MPqtDNCpWoqnObkYv1ApHBd5Uju8V7e59KI5rQ0uopHjjp9hgahkKctuSJelTvjg' \ ////// Prueba con gráfico Datawrapper Personal
+
+curl --request GET \--url 'https://api.datawrapper.de/v3/charts/3Fh1f/data' \--header 'Authorization: Bearer LdPn6tpkstYsBwkY53saQAkzOuksMpu2fL9QYl59PtxGeMXuUedDHJmJwqDyGSX3' \ ////// Prueba con gráfico Datawrapper Datos RTVE
