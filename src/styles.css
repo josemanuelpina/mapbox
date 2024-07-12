@@ -1,0 +1,230 @@
+/*body{
+    display: flex;
+    height: 100vh;
+}
+
+#map{
+    height: 100vh;
+    width: 80%;
+}
+
+#info-tooltip{
+    height: 100vh;
+    width: 20%;
+}*/
+/* General resets */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body, html {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  font-family: "Roboto", sans-serif;
+}
+
+/* Style for the map container */
+#map {
+  width: 70%;
+  position: relative;
+  top: 0;
+  bottom: 0;
+}
+
+/* Tooltip styling */
+#info-tooltip {
+  width: 30%;
+  position: relative;
+  top: 10px;
+  left: 10px;
+  background: white;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  z-index: 1;
+}
+
+/* Municipality info styles */
+.municipio {
+  font-weight: bold;
+}
+
+/* Style for form filters */
+.filters-container {
+  margin-top: 20px;
+}
+
+#vehicleSelectorForm, .filter-buttons, #area-type-filters {
+  margin-bottom: 10px;
+}
+
+/* Style for the legend */
+#color-legend-container {
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+  background: white;
+  padding: 10px;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+#color-legend div {
+  height: 20px;
+  margin-bottom: 5px;
+}
+
+.menu {
+  display: none;
+  top: 50%;
+  position: absolute;
+  z-index: 3;
+  background: #ffffff;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  width: 250px;
+  border-radius: 8px;
+  overflow: hidden;
+  margin: 10px;
+}
+
+.menu.active {
+  display: block;
+}
+
+.menu .turismo {
+  background-image: url("SASS/icons/turismo.svg");
+}
+
+.menu .furgoneta {
+  background-image: url("SASS/icons/furgoneta.svg");
+}
+
+.menu .tractores {
+  background-image: url("SASS/icons/tractor.svg");
+}
+
+.menu .camiones {
+  background-image: url("SASS/icons/camion.svg");
+}
+
+.menu .motocicletas {
+  background-image: url("SASS/icons/moto.svg");
+}
+
+.menu .autobus {
+  background-image: url("SASS/icons/bus.svg");
+}
+
+.menu .todos {
+  background-image: url("SASS/icons/todos.svg");
+}
+
+.menu-header,
+.menu-footer, .menu-tipos {
+  padding: 10px;
+  background: #f2f2f2;
+  border-bottom: 1px solid #e1e1e1;
+}
+
+.menu-header h2,
+.menu-footer h2 {
+  margin: 0;
+  font-size: 16px;
+  color: #333;
+}
+
+.menu-content {
+  padding: 10px;
+  display: flex;
+  flex-direction: row;
+}
+
+.menu-button {
+  flex: 1;
+  background: #e7e7e7;
+  border: none;
+  padding: 10px;
+  margin-bottom: 5px;
+  cursor: pointer;
+  text-align: left;
+  border-radius: 4px;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+}
+
+.menu-button:hover,
+.menu-button.active {
+  background: #dcdcdc;
+}
+
+.menu-button:last-child {
+  margin-bottom: 0;
+}
+
+.edit {
+  background-color: #ffffff; /* White background */
+  color: #007bff; /* Blue color for the text */
+  border: 2px solid #007bff; /* Blue border */
+  border-radius: 20px; /* Rounded corners */
+  padding: 5px 15px; /* Padding inside the button */
+  font-size: 14px; /* Font size */
+  cursor: pointer; /* Hand cursor on hover */
+  outline: none; /* Remove outline */
+  display: flex; /* Flexbox for inline elements */
+  align-items: center; /* Align items vertically */
+  justify-content: space-between; /* Space between text and icon */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.edit .iconEdit {
+  flex: 1;
+  background: #e7e7e7;
+  border: none;
+  padding: 10px;
+  margin-bottom: 5px;
+  cursor: pointer;
+  text-align: left;
+  border-radius: 4px;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  background-image: url("SASS/icons/editar.svg");
+}
+
+/* Responsive layout adjustments */
+@media (max-width: 768px) {
+  #info-tooltip, #color-legend-container {
+    top: auto;
+    bottom: 70px; /* Adjust based on your layout */
+    width: calc(100% - 20px);
+    left: 10px;
+  }
+}
+@media (max-width: 460px) {
+  body {
+    overflow-x: hidden !important;
+  }
+  #map {
+    width: 100%;
+  }
+  #info-tooltip {
+    position: fixed;
+    bottom: -60vh;
+    left: 0;
+    width: 100%;
+    height: 80vh;
+    transition: bottom 0.5s;
+    z-index: 1;
+    background: #fff;
+    border-radius: 8px 8px 0 0;
+    overflow: scroll;
+    -webkit-overflow-scrolling: touch;
+  }
+}
+/* Add additional styles below based on the specific classes and ids you have in your HTML */
+
+
+/*# sourceMappingURL=styles.css.map */

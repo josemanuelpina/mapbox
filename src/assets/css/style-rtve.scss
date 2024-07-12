@@ -1,0 +1,26 @@
+
+@media screen and (min-width: 1024px) {
+	.inf-rtve-fullwidth{
+		left: calc(-1* (((100vw + 2rem) - 110rem) / 2));
+		width: calc(100vw);
+		position: relative;
+		margin-right: calc(-1* (((100vw + 2rem) - 108rem) / 2));
+		// margin-bottom: 2rem;
+		// padding-bottom: 6rem;
+	}
+}
+
+@media screen and (max-width: 978px) {
+    .artBody{
+        padding: 0 0;
+        p{
+        padding: 0 2rem;
+        }
+        .readtime{
+        padding: 0 2rem;
+        }
+    }
+}
+body,.artBody{
+    background-color: white;
+}

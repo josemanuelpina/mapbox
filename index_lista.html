@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mapa de Playas</title>
+    <link href="https://api.mapbox.com/mapbox-gl-js/v3.4.0/mapbox-gl.css" rel="stylesheet">
+    <script src="https://api.mapbox.com/mapbox-gl-js/v3.4.0/mapbox-gl.js"></script>
+    <link rel="stylesheet"
+        href="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.7.0/mapbox-gl-geocoder.css"
+        type="text/css" />
+    <script src="https://unpkg.com/@dotlottie/player-component@latest/dist/dotlottie-player.mjs" type="module"></script>
+    <link rel="stylesheet" href="./css/style_lista.css">
+    <link href="https://fonts.googleapis.com/css2?family=Lora:wght@700&family=Open+Sans:wght@400;600&display=swap"
+        rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Lora:wght@700&family=Open+Sans:wght@400;600&family=Roboto:wght@400;500&display=swap"
+        rel="stylesheet">
+</head>
+<body>
+    <div id="loader-container" style="display: block;">
+        <dotlottie-player src="https://lottie.host/9f502108-8a62-401e-8504-7ab618e4a668/9nt2TI0unw.json" background="transparent" speed="1" style="width: 300px; height: 300px;" loop autoplay></dotlottie-player>
+    </div>
+    <div id="playa-detalle" class="hidden">
+        <button id="close-playa-detalle">X</button>
+        <button id="button-volver">← Volver</button>
+        <div id="playa-detalle-content">
+        </div>
+    </div>
+    <div id="container">
+        <div id="sidebar">
+            <div id="geocoder" class="geocoder full-width"></div>
+            <h3>Servicios</h3>
+            <div class="checkbox-group">
+                <label><input type="checkbox" id="filtro_accesible_sillas_ruedas" value="s"> Accesible en silla de
+                    ruedas</label>
+                <label><input type="checkbox" id="filtro_aseos" value="s"> Aseos</label>
+                <label><input type="checkbox" id="filtro_alquiler_sombrillas_hamacas" value="s"> Alquiler de
+                    sombrillas/hamacas</label>
+                <label><input type="checkbox" id="filtro_aparcamiento" value="s"> Aparcamiento</label>
+                <label><input type="checkbox" id="filtro_chiringuito" value="s"> Chiringuito</label>
+                <label><input type="checkbox" id="filtro_duchas_lavapies" value="s"> Duchas y/o lavapiés</label>
+                <label><input type="checkbox" id="filtro_socorrista" value="s"> Socorrista</label>
+                <label><input type="checkbox" id="filtro_zona_infantil" value="s"> Zona infantil</label>
+            </div>
+            <h3>Características</h3>
+            <div class="checkbox-group">
+                <label><input type="checkbox" id="filtro_aguas_tranquilas" value="s"> Aguas tranquilas</label>
+                <label><input type="checkbox" id="filtro_baja_ocupacion" value="s"> Baja Ocupación</label>
+                <label><input type="checkbox" id="filtro_nudista" value="s"> Zona nudista</label>
+                <label><input type="checkbox" id="filtro_playa_piedras" value="s"> Playa con piedras</label>
+                <label><input type="checkbox" id="filtro_playa_arena" value="s"> Playa de arena</label>
+                <label><input type="checkbox" id="filtro_extensas_1km" value="s"> Playa extensa (>1km)</label>
+            </div>
+            <h3>Entorno natural</h3>
+            <div class="checkbox-group">
+                <label><input type="checkbox" id="filtro_acantilado_montana" value="s"> Acantilado o montañas</label>
+                <label><input type="checkbox" id="filtro_dunas" value="s"> Dunas</label>
+                <label><input type="checkbox" id="filtro_paseo_completo" value="s"> Paseo completo</label>
+                <label><input type="checkbox" id="filtro_playa_aislada" value="s"> Playa aislada</label>
+            </div>
+            <h3>Actividades</h3>
+            <div class="checkbox-group">
+                <label><input type="checkbox" id="filtro_alquiler_nautico" value="s"> Alquiler náutico</label>
+                <label><input type="checkbox" id="filtro_club_nautico" value="s"> Club náutico</label>
+                <label><input type="checkbox" id="filtro_fondo_barcos" value="s"> Fondo para barcos</label>
+                <label><input type="checkbox" id="filtro_submarinismo" value="s"> Submarinismo</label>
+                <label><input type="checkbox" id="filtro_surf" value="s"> Surf</label>
+                <label><input type="checkbox" id="filtro_zona_deportiva" value="s"> Zona deportiva</label>
+            </div>
+        </div>
+        <div id="list-container">
+            <h3>Playas visibles</h3>
+            <h3>Costas</h3>
+            <div class="button-group">
+                <button
+                    id="btn-cantabrico"><span>Cantábrico</span><!--<img src="./svg/cantabria.svg" alt="Cantábrico"></button>-->
+                    <button
+                        id="btn-baleares"><span>Baleares</span><!--<img src="./svg/baleares.svg" alt="Baleares"></button>-->
+                        <button
+                            id="btn-canarias"><span>Canarias</span><!--<img src="./svg/canarias.svg" alt="Canarias"></button>-->
+                            <button
+                                id="btn-andalucia-murcia"><span>Mediterráneo</span><!--<img src="./svg/andalucia.svg" alt="Andalucía"></button>-->
+                                <button id="btn-baleares-cvalenciana"><span>Costa
+                                        Andaluza</span><!--<img src="./svg/mediterraneo.svg" alt="Valencia"></button>-->
+                                    <button
+                                        id="btn-cataluna"><span>Galicia</span><!--<img src="./svg/mediterraneo.svg" alt="Cataluña"></button>-->
+            </div>
+            <div id="skeleton-container" style="display: none;">
+                <div class="skeleton">
+                    <div class="skeleton-img"></div>
+                    <div class="skeleton-text"></div>
+                    <div class="skeleton-text"></div>
+                </div>
+                <div class="skeleton">
+                    <div class="skeleton-img"></div>
+                    <div class="skeleton-text"></div>
+                    <div class="skeleton-text"></div>
+                </div>
+                <div class="skeleton">
+                    <div class="skeleton-img"></div>
+                    <div class="skeleton-text"></div>
+                    <div class="skeleton-text"></div>
+                </div>
+            </div>
+            <div id="contador-playas">Mostrando 0 playas</div>
+            <ul id="points-list"></ul>
+        </div>
+        <div id="map" class="map"></div>
+        <div id="tooltip" class="tooltip"></div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.1.1/d3.min.js"></script>
+    <script
+        src="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.7.0/mapbox-gl-geocoder.min.js"></script>
+    <script src="./js/script_lista.js"></script> "./css/style_lista.css.js"
+    <script src="./js/script_ficha.js"></script>
+</body>
+
+</html>

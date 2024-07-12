@@ -1,0 +1,748 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mapa con Mapbox</title>
+    <script src='https://api.mapbox.com/mapbox-gl-js/v3.0.1/mapbox-gl.js'></script>
+    <link href='https://api.mapbox.com/mapbox-gl-js/v3.0.1/mapbox-gl.css' rel='stylesheet' />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/chroma-js/2.1.0/chroma.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/detectizr/2.2.0/detectizr.min.js"></script>
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <script
+        src='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.7.0/mapbox-gl-geocoder.min.js'></script>
+    <!-- <link rel="stylesheet" href="./assets/css/rtve.css"> -->
+    <link rel='stylesheet'
+        href='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.7.0/mapbox-gl-geocoder.css'
+        type='text/css' />
+
+    <link href="https://css2.rtve.es/css/rtve.2018/rtve.commons/rtve.core/basics.core.css" rel="stylesheet">
+    <link href="https://css2.rtve.es/css/rtve.2019/rtve.compacts/p_final.content.noticias.reportajes.desktp.css"
+        rel="stylesheet">
+    <!-- <link rel="stylesheet" href="styles.css"> -->
+   
+    <!-- <link rel="stylesheet" href="./assets/css/style.css"> -->
+    <link rel="stylesheet" href="./assets/css/style-playas.css">
+    <style>
+        html {
+            font-size: 62.50%;
+        }
+        body {
+            font-size: 1em;
+            line-height: 1;
+        }
+
+    </style>
+</head>
+
+<body>
+    <div style="position: relative; z-index: 4444;">
+        <div class="wrapper mainheader minify" style="position: fixed;">
+            <header class="navBox">
+                <div class="container">
+                    <span class="ico blind slideL leftoff">
+                        <img src="https://img2.rtve.es/css/i/blank.gif" alt="menú principal">
+                    </span>
+                    <span class="ico blind slideL lefton">
+                        <img src="https://img2.rtve.es/css/i/blank.gif" alt="menú principal">
+                    </span>
+                    <nav class="blindBox" data-cat="{&quot;cont&quot;:&quot;pf&quot;, &quot;cat&quot;:&quot;825&quot;}"
+                        data-destpub="NOTICIAS">
+                        <ul class="maintabs">
+
+
+                            <li class="tab_first">
+                                <a class="ico logo beoff" href="https://www.rtve.es/" title="Portada de RTVE.es">
+
+                                    <img alt="Portada de RTVE.es"
+                                        src="https://img2.rtve.es/css/rtve.commons/rtve.header.footer/i/logoRTVE.png">
+                                </a>
+
+
+
+                            </li>
+
+
+
+                            <li class="tab_direc playdirec">
+                                <a class="ico boton" href="https://www.rtve.es/play/videos/directo"
+                                    title="Emisiones en directo de RTVE Play">
+
+                                    <span class="tabH1">Rtve Play en directo</span>
+
+                                    <img alt="Emisiones en directo de RTVE Play"
+                                        src="https://img2.rtve.es/css/i/blank.gif">
+                                </a>
+
+                            </li>
+
+
+
+                            <li class="tab_direc playradiodirec">
+                                <a class="ico boton" href="https://www.rtve.es/play/radio"
+                                    title="RTVE Audio en directo ">
+
+                                    <span class="tabH1">RTVE Audio en directo </span>
+
+                                    <img alt="RTVE Audio en directo " src="https://img2.rtve.es/css/i/blank.gif">
+                                </a>
+
+                            </li>
+
+
+
+                            <li class="tab_infor active">
+                                <a class="ico brows beoff" href="https://www.rtve.es/noticias/" title="Noticias">
+
+                                    <span class="tabH1">Noticias</span>
+
+                                    <img alt="Noticias" src="https://img2.rtve.es/css/i/blank.gif">
+                                </a>
+
+
+                                <div class="blindBox beoff">
+                                    <ul>
+
+                                        <li>
+                                            <span class="ico ">
+                                                <a href="https://www.rtve.es/noticias/20240103/guerra-israel-palestina-ultima-hora-directo/2470294.shtml"
+                                                    title="Guerra Israel - Hamás">
+                                                    <span>Guerra Israel - Hamás, última hora</span>
+                                                    <img src="https://img2.rtve.es/css/i/blank.gif" alt="desplegable">
+                                                </a>
+                                            </span>
+
+                                        </li>
+
+                                        <li>
+                                            <span class="ico ">
+                                                <a href="https://www.rtve.es/noticias/20240103/guerra-ucrania-rusia-directo-ultima-hora/2470295.shtml"
+                                                    title="Guerra en Ucrania">
+                                                    <span>Guerra en Ucrania</span>
+                                                    <img src="https://img2.rtve.es/css/i/blank.gif" alt="desplegable">
+                                                </a>
+                                            </span>
+
+                                        </li>
+
+                                        <li>
+                                            <span class="ico ">
+                                                <a href="https://www.rtve.es/noticias/verificartve/"
+                                                    title="VerificaRTVE">
+                                                    <span>VerificaRTVE</span>
+                                                    <img src="https://img2.rtve.es/css/i/blank.gif" alt="desplegable">
+                                                </a>
+                                            </span>
+
+                                        </li>
+
+                                        <li>
+                                            <span class="ico ">
+                                                <a href="https://www.rtve.es/noticias/ultimas-noticias/"
+                                                    title="Últimas noticias">
+                                                    <span>Últimas noticias</span>
+                                                    <img src="https://img2.rtve.es/css/i/blank.gif" alt="desplegable">
+                                                </a>
+                                            </span>
+
+                                        </li>
+
+                                        <li>
+                                            <span class="ico ">
+                                                <a href="https://www.rtve.es/play/videos/directo/informativos/"
+                                                    title="Directos">
+                                                    <span>Directos</span>
+                                                    <img src="https://img2.rtve.es/css/i/blank.gif" alt="desplegable">
+                                                </a>
+                                            </span>
+
+                                        </li>
+
+                                        <li>
+                                            <span class="ico ">
+                                                <a href="https://www.rtve.es/radio/radio5/" title="Radio 5">
+                                                    <span>Radio 5</span>
+                                                    <img src="https://img2.rtve.es/css/i/blank.gif" alt="desplegable">
+                                                </a>
+                                            </span>
+
+                                        </li>
+
+                                        <li>
+                                            <span class="ico ">
+                                                <a href="https://www.rtve.es/noticias/rtve-igualdad/"
+                                                    title="Portal de Igualdad en RTVE">
+                                                    <span>RTVE Igualdad</span>
+                                                    <img src="https://img2.rtve.es/css/i/blank.gif" alt="desplegable">
+                                                </a>
+                                            </span>
+
+                                        </li>
+
+                                        <li>
+                                            <span class="ico ">
+                                                <a href="https://www.rtve.es/noticias/espana/"
+                                                    title="Noticias de España">
+                                                    <span>España</span>
+                                                    <img src="https://img2.rtve.es/css/i/blank.gif" alt="desplegable">
+                                                </a>
+                                            </span>
+
+                                        </li>
+
+                                        <li>
+                                            <span class="ico ">
+                                                <a href="https://www.rtve.es/noticias/internacional/"
+                                                    title="Noticias del mundo">
+                                                    <span>Mundo</span>
+                                                    <img src="https://img2.rtve.es/css/i/blank.gif" alt="desplegable">
+                                                </a>
+                                            </span>
+
+                                        </li>
+
+                                        <li>
+                                            <span class="ico ">
+                                                <a href="https://www.rtve.es/noticias/economia/"
+                                                    title="Noticias de economía">
+                                                    <span>Economía</span>
+                                                    <img src="https://img2.rtve.es/css/i/blank.gif" alt="desplegable">
+                                                </a>
+                                            </span>
+
+                                        </li>
+
+                                        <li>
+                                            <span class="ico ">
+                                                <a href="https://www.rtve.es/noticias/cultura/" title="">
+                                                    <span>Cultura</span>
+                                                    <img src="https://img2.rtve.es/css/i/blank.gif" alt="desplegable">
+                                                </a>
+                                            </span>
+
+                                        </li>
+
+                                        <li>
+                                            <span class="ico ">
+                                                <a href="https://www.rtve.es/noticias/ciencia-y-tecnologia/"
+                                                    title="Ciencia">
+                                                    <span>Ciencia</span>
+                                                    <img src="https://img2.rtve.es/css/i/blank.gif" alt="desplegable">
+                                                </a>
+                                            </span>
+
+                                        </li>
+
+                                        <li>
+                                            <span class="ico arrow">
+                                                <a href="https://www.rtve.es/centros-territoriales/"
+                                                    title="Noticias de tu comunidad autónoma">
+                                                    <span>En tu comunidad</span>
+                                                    <img src="https://img2.rtve.es/css/i/blank.gif" alt="desplegable">
+                                                </a>
+                                            </span>
+
+                                            <div class="blindBox">
+                                                <ul>
+
+                                                    <li>
+                                                        <span class="ico">
+                                                            <a href="https://www.rtve.es/noticias/andalucia/"
+                                                                title="Noticias de Andalucía">
+                                                                <span>Andalucía</span>
+                                                            </a>
+                                                        </span>
+                                                    </li>
+
+                                                    <li>
+                                                        <span class="ico">
+                                                            <a href="https://www.rtve.es/noticias/aragon/"
+                                                                title="Noticias de Aragón">
+                                                                <span>Aragón</span>
+                                                            </a>
+                                                        </span>
+                                                    </li>
+
+                                                    <li>
+                                                        <span class="ico">
+                                                            <a href="https://www.rtve.es/noticias/asturias/"
+                                                                title="Noticias de Asturias">
+                                                                <span>Asturias</span>
+                                                            </a>
+                                                        </span>
+                                                    </li>
+
+                                                    <li>
+                                                        <span class="ico">
+                                                            <a href="https://www.rtve.es/noticias/illes-balears/"
+                                                                title="Noticias de Illes Balears">
+                                                                <span>Baleares</span>
+                                                            </a>
+                                                        </span>
+                                                    </li>
+
+                                                    <li>
+                                                        <span class="ico">
+                                                            <a href="https://www.rtve.es/noticias/canarias/"
+                                                                title="Noticias de Canarias">
+                                                                <span>Canarias</span>
+                                                            </a>
+                                                        </span>
+                                                    </li>
+
+                                                    <li>
+                                                        <span class="ico">
+                                                            <a href="https://www.rtve.es/noticias/cantabria/"
+                                                                title="Noticias de Cantabria">
+                                                                <span>Cantabria</span>
+                                                            </a>
+                                                        </span>
+                                                    </li>
+
+                                                    <li>
+                                                        <span class="ico">
+                                                            <a href="https://www.rtve.es/noticias/castilla-la-mancha/"
+                                                                title="Noticias de Castilla-La Mancha">
+                                                                <span>CLM</span>
+                                                            </a>
+                                                        </span>
+                                                    </li>
+
+                                                    <li>
+                                                        <span class="ico">
+                                                            <a href="https://www.rtve.es/noticias/castilla-y-leon/"
+                                                                title="Noticias de Castilla y León">
+                                                                <span>CyL</span>
+                                                            </a>
+                                                        </span>
+                                                    </li>
+
+                                                    <li>
+                                                        <span class="ico">
+                                                            <a href="https://www.rtve.es/television/catalunya/noticies/"
+                                                                title="Noticias de Cataluña">
+                                                                <span>Cataluña</span>
+                                                            </a>
+                                                        </span>
+                                                    </li>
+
+                                                    <li>
+                                                        <span class="ico">
+                                                            <a href="https://www.rtve.es/noticias/comunidad-valenciana/"
+                                                                title="Noticias de la Comunidad Valenciana">
+                                                                <span>C. Valenciana</span>
+                                                            </a>
+                                                        </span>
+                                                    </li>
+
+                                                    <li>
+                                                        <span class="ico">
+                                                            <a href="https://www.rtve.es/noticias/extremadura/"
+                                                                title="Noticias de Extremadura">
+                                                                <span>Extremadura</span>
+                                                            </a>
+                                                        </span>
+                                                    </li>
+
+                                                    <li>
+                                                        <span class="ico">
+                                                            <a href="https://www.rtve.es/noticias/galicia/"
+                                                                title="Noticias de Galicia">
+                                                                <span>Galicia</span>
+                                                            </a>
+                                                        </span>
+                                                    </li>
+
+                                                    <li>
+                                                        <span class="ico">
+                                                            <a href="https://www.rtve.es/noticias/la-rioja/"
+                                                                title="Noticias de La Rioja">
+                                                                <span>La Rioja</span>
+                                                            </a>
+                                                        </span>
+                                                    </li>
+
+                                                    <li>
+                                                        <span class="ico">
+                                                            <a href="https://www.rtve.es/noticias/madrid/"
+                                                                title="Noticias de Madrid">
+                                                                <span>Madrid</span>
+                                                            </a>
+                                                        </span>
+                                                    </li>
+
+                                                    <li>
+                                                        <span class="ico">
+                                                            <a href="https://www.rtve.es/noticias/murcia/"
+                                                                title="Noticias de Murcia">
+                                                                <span>Murcia</span>
+                                                            </a>
+                                                        </span>
+                                                    </li>
+
+                                                    <li>
+                                                        <span class="ico">
+                                                            <a href="https://www.rtve.es/noticias/navarra/"
+                                                                title="Noticias de Navarra">
+                                                                <span>Navarra</span>
+                                                            </a>
+                                                        </span>
+                                                    </li>
+
+                                                    <li>
+                                                        <span class="ico">
+                                                            <a href="https://www.rtve.es/noticias/pais-vasco/"
+                                                                title="Noticias del País Vasco">
+                                                                <span>P. Vasco</span>
+                                                            </a>
+                                                        </span>
+                                                    </li>
+
+                                                    <li>
+                                                        <span class="ico">
+                                                            <a href="https://www.rtve.es/noticias/ceuta/"
+                                                                title="Noticias de Ceuta">
+                                                                <span>Ceuta</span>
+                                                            </a>
+                                                        </span>
+                                                    </li>
+
+                                                    <li>
+                                                        <span class="ico">
+                                                            <a href="https://www.rtve.es/noticias/melilla/"
+                                                                title="Noticias de Melilla">
+                                                                <span>Melilla</span>
+                                                            </a>
+                                                        </span>
+                                                    </li>
+
+                                                </ul>
+                                            </div>
+
+                                        </li>
+
+                                        <li>
+                                            <span class="ico ">
+                                                <a href="https://www.rtve.es/temas/" title="Más temas">
+                                                    <span>Más temas</span>
+                                                    <img src="https://img2.rtve.es/css/i/blank.gif" alt="desplegable">
+                                                </a>
+                                            </span>
+
+                                        </li>
+
+                                    </ul>
+                                </div>
+
+
+                            </li>
+
+
+
+                            <li class="tab_telev">
+                                <a class="ico brows beoff" href="https://www.rtve.es/television/" title="Televisión">
+
+                                    <span class="tabH1">Televisión</span>
+
+                                    <img alt="Televisión" src="https://img2.rtve.es/css/i/blank.gif" class="ico">
+                                </a>
+
+
+
+                            </li>
+
+
+
+                            <li class="tab_radio">
+                                <a class="ico brows beoff" href="https://www.rtve.es/radio/" title="Radio">
+
+                                    <span class="tabH1">Radio</span>
+
+                                    <img alt="Radio" src="https://img2.rtve.es/css/i/blank.gif" class="ico">
+                                </a>
+
+
+
+                            </li>
+
+
+
+                            <li class="tab_sport">
+                                <a class="ico brows beoff" href="https://www.rtve.es/deportes/" title="Deportes">
+
+                                    <span class="tabH1">Deportes</span>
+
+                                    <img alt="Deportes" src="https://img2.rtve.es/css/i/blank.gif" class="ico">
+                                </a>
+
+
+
+                            </li>
+
+
+
+                            <li class="tab_child">
+                                <a class="ico brows beoff" href="https://www.rtve.es/infantil/" title="Infantil">
+
+                                    <span class="tabH1">Infantil</span>
+
+                                    <img alt="Infantil" src="https://img2.rtve.es/css/i/blank.gif" class="ico">
+                                </a>
+
+
+
+                            </li>
+
+
+
+                            <li class="tab_carta">
+                                <a class="ico brows beoff" href="https://www.rtve.es/play/" title="RTVE Play">
+
+                                    <span class="tabH1">RTVE Play</span>
+
+                                    <img alt="RTVE Play" src="https://img2.rtve.es/css/i/blank.gif" class="ico">
+                                </a>
+
+                            </li>
+
+
+
+                            <li class="tab_carta">
+                                <a class="ico brows beoff" href="https://www.rtve.es/play/radio" title="RTVE Audio">
+
+                                    <span class="tabH1">RTVE Audio</span>
+
+                                    <img alt="RTVE Audio" src="https://img2.rtve.es/css/i/blank.gif" class="ico">
+                                </a>
+
+                            </li>
+
+
+
+                            <li class="tab_weath">
+                                <a class="ico brows beoff" href="https://www.rtve.es/eltiempo/" title="El Tiempo">
+
+                                    <span class="tabH1">El Tiempo</span>
+
+                                    <img alt="El Tiempo" src="https://img2.rtve.es/css/i/blank.gif" class="ico">
+                                </a>
+
+                            </li>
+
+
+
+                            <li class="tab_playz">
+                                <a class="ico brows beoff" href="https://www.rtve.es/playz/" title="Playz">
+
+                                    <span class="tabH1">Playz</span>
+
+                                    <img alt="Playz" src="https://img2.rtve.es/css/i/blank.gif" class="ico">
+                                </a>
+
+                            </li>
+
+
+                        </ul>
+                    </nav>
+
+                </div>
+            </header>
+        </div>
+    </div>
+    <article class="mark article">
+        <div class="falseH1">
+					
+            <strong class="pretitle">
+                
+                    noticia 
+                
+            </strong>
+    
+
+        <h1 id="h1_maincontent">
+            <span class="maintitle">temporal</span>
+        </h1>
+    </div>
+
+    <div class="summary">
+        
+    </div>
+    
+
+    <header class="signBlock">
+        <p class="pubBox">
+            <time datetime="2023-12-14T15:37:00+01:00">
+                    <span class="datpub">14.12.2023</span>
+                    <span aria-hidden="true">|</span>
+                    
+                    <span class="datrev"><strong>
+                        15:37 horas</strong>
+                    </span>
+                    
+            </time>
+        </p>
+        
+            
+
+<div class="author  anonim">
+
+<span>Por</span>
+
+<span class="name" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+
+
+    <em itemprop="name">
+        Rtve
+    </em>
+
+</span>
+
+
+</div>
+
+
+
+        
+    </header>
+    </article>
+    <div class="mainContent hid_email">
+        <div class="artBody">
+            <span class="readtime" data-numwords="59">
+                <span class="icon-rtve crono" role="contentinfo" aria-label="Tiempo de lectura:"></span>
+                <strong>1 min.</strong>
+            </span>
+            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Delectus mollitia maiores rem ut quidem harum
+            </p>
+            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Delectus mollitia maiores rem ut quidem harum
+            </p>
+            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Delectus mollitia maiores rem ut quidem harum
+            </p>
+            <!-- Aplicacion RTVE -->
+            
+            <div class="inf-rtve-fullwidth">
+                <div id="playa-detalle" class="in__details">
+                    <button id="close-playa-detalle" class="in__details_close">X</button>
+                    <div id="playa-detalle-content" class="in__details_content"></div>
+                </div>
+                <div class="in_map_wrapper">
+                    <div class="in__header">
+                        <div class="in__header_logo">
+                            <img src="./assets/img/logo-playas.png" alt="">
+                        </div>
+                        <div class="in__header_nav">
+                            <div class="in-search-bar">
+                                <div id="geocoder" class="geocoder full-width"></div>
+                            </div>
+                        </div>
+                        <div class="in__header_fly">
+                            <button id="btn-galicia" class="in-button b-galicia"></button>
+                            <button id="btn-cantabrico" class="in-button b-cantabria"></button>
+                            <button id="btn-cataluna" class="in-button b-mediterraneo"></button>
+                            <button id="btn-andalucia-murcia" class="in-button b-andalucia"></button>
+                            <button id="btn-canarias" class="in-button b-canarias"></button>
+                            <button id="btn-baleares" class="in-button b-baleares"></button>
+                        </div>
+                    </div>
+                    <div id="contador-playas" class="in__info_sidebar">
+                        
+                    </div>
+                    <div class="in__main">
+                        <div class="in__main_siderbar">
+                            <div class="in__main_siderbar_header">
+                                <span></span>
+                                <h4>Filtros</h4>
+                            </div>
+                            <div class="scroll-filter">
+                                <div class="in__main_siderbar_filter services">
+                                    <h3>Servicios</h3>
+                                    <ul class="in-checkbox-group">
+                                        <li><label><input type="checkbox" id="filtro_accesible_sillas_ruedas" value="s"> <span>Accesible en silla de ruedas</span></label></li>
+                                        <li><label><input type="checkbox" id="filtro_aseos" value="s"> <span>Aseos</span></label></li>
+                                        <li><label><input type="checkbox" id="filtro_alquiler_sombrillas_hamacas" value="s"> <span>Alquiler de sombrillas/hamacas</span></label></li>
+                                        <li><label><input type="checkbox" id="filtro_aparcamiento" value="s"> <span>Aparcamiento</span></label></li>
+                                        <li><label><input type="checkbox" id="filtro_chiringuito" value="s"> <span>Chiringuito</span></label></li>
+                                        <li><label><input type="checkbox" id="filtro_duchas_lavapies" value="s"> <span>Duchas y/o lavapiés</span></label></li>
+                                        <li><label><input type="checkbox" id="filtro_socorrista" value="s"> <span>Socorrista</span></label></li>
+                                        <li><label><input type="checkbox" id="filtro_zona_infantil" value="s"> <span>Zona infantil</span></label></li>
+                                    </ul>
+                                </div>
+                                <div class="in__main_siderbar_filter features">
+                                    <h3>Características</h3>
+                                    <ul class="in-checkbox-group">
+                                        <li><label><input type="checkbox" id="filtro_aguas_tranquilas" value="s"> Aguas tranquilas</label></li>
+                                        <li><label><input type="checkbox" id="filtro_baja_ocupacion" value="s"> Baja Ocupación</label></li>
+                                        <li><label><input type="checkbox" id="filtro_nudista" value="s"> Zona nudista</label></li>
+                                        <li><label><input type="checkbox" id="filtro_playa_piedras" value="s"> Playa con piedras</label></li>
+                                        <li><label><input type="checkbox" id="filtro_playa_arena" value="s"> Playa de arena</label></li>
+                                        <li><label><input type="checkbox" id="filtro_extensas_1km" value="s"> Playa extensa (>1km)</label></li>
+                                    </ul>
+                                </div>
+                                <div class="in__main_siderbar_filter natural">
+                                    <h3>Entorno natural</h3>
+                                    <ul class="in-checkbox-group">
+                                        <li><label><input type="checkbox" id="filtro_acantilado_montana" value="s"> Acantilado o montañas</label></li>
+                                        <li><label><input type="checkbox" id="filtro_dunas" value="s"> Dunas</label></li>
+                                        <li><label><input type="checkbox" id="filtro_paseo_completo" value="s"> Paseo completo</label></li>
+                                        <li><label><input type="checkbox" id="filtro_playa_aislada" value="s"> Playa aislada</label></li>
+                                    </ul>
+                                </div>
+                                <div class="in__main_siderbar_filter activities">
+                                    <h3>Actividades</h3>
+                                    <ul class="in-checkbox-group">
+                                        <li><label><input type="checkbox" id="filtro_alquiler_nautico" value="s"> Alquiler náutico</label></li>
+                                        <li><label><input type="checkbox" id="filtro_club_nautico" value="s"> Club náutico</label></li>
+                                        <li><label><input type="checkbox" id="filtro_fondo_barcos" value="s"> Fondo para barcos</label></li>
+                                        <li><label><input type="checkbox" id="filtro_submarinismo" value="s"> Submarinismo</label></li>
+                                        <li><label><input type="checkbox" id="filtro_surf" value="s"> Surf</label></li>
+                                        <li><label><input type="checkbox" id="filtro_zona_deportiva" value="s"> Zona deportiva</label></li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="in__main_siderbar_footer_mobile">
+                                <button>Ver Lista</button>
+                            </div>
+                        </div>
+                        <div class="in__button_mobile">
+                            <button>Ver Filtros</button>
+                        </div>
+                        <div class="in__main__list">
+                            <ul id="points-list" class="in__main__list_items"></ul>
+                        </div>
+                        <div class="in__main__map">
+                            <div id="map" class="map"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Aplicacion RTVE -->
+
+            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Delectus mollitia maiores rem ut quidem harum
+                enim
+                consequatur, magnam saepe alias quam fuga! Ducimus iure delectus rem. Voluptates quod consequuntur in!
+            </p>
+            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Delectus mollitia maiores rem ut quidem harum
+                enim
+                consequatur, magnam saepe alias quam fuga! Ducimus iure delectus rem. Voluptates quod consequuntur in!
+            </p>
+            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Delectus mollitia maiores rem ut quidem harum
+                enim
+                consequatur, magnam saepe alias quam fuga! Ducimus iure delectus rem. Voluptates quod consequuntur in!
+            </p>
+            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Delectus mollitia maiores rem ut quidem harum
+                enim
+                consequatur, magnam saepe alias quam fuga! Ducimus iure delectus rem. Voluptates quod consequuntur in!
+            </p>
+        </div>
+    </div>
+</article>
+<!-- <link rel="stylesheet" href="../css/style_lista.css"> -->
+    <script src="../js/script_lista.js"></script>
+    <script src="../js/script_ficha.js"></script>
+    <script src="../js/script_app.js"></script>
+</body>
+
+</html>

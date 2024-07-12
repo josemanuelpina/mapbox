@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mapa con Mapbox</title>
+    <link href="https://api.mapbox.com/mapbox-gl-js/v2.4.1/mapbox-gl.css" rel="stylesheet">
+    <script src="https://api.mapbox.com/mapbox-gl-js/v2.4.1/mapbox-gl.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/chroma-js/2.1.0/chroma.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/detectizr/2.2.0/detectizr.min.js"></script>
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <script
+        src='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.7.0/mapbox-gl-geocoder.min.js'></script>
+    <link rel='stylesheet'
+        href='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.7.0/mapbox-gl-geocoder.css'
+        type='text/css' />
+        <script src="script.js"></script>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <div id="menu" class="menu">
+        <div class="menu-header">
+            <h2>Tipos de vehículo</h2>
+        </div>
+        <div class="menu-content">
+            <button class="menu-button tipoVehiculo turismo active" onclick="updateMap('turismos')"></button>
+            <button class="menu-button tipoVehiculo furgoneta" onclick="updateMap('furgonetas')"></button>
+            <button class="menu-button tipoVehiculo tractores" onclick="updateMap('tractores')"></button>
+            <button class="menu-button tipoVehiculo camiones" onclick="updateMap('camiones')"></button>
+            <button class="menu-button tipoVehiculo motocicletas" onclick="updateMap('motocicletas')"></button>
+            <button class="menu-button tipoVehiculo autobus" onclick="updateMap('autobuses')"></button>
+            <button class="menu-button tipoVehiculo todos" onclick="updateMap('todos')"></button>
+        </div>
+        <div class="menu-footer">
+            <h2>Tipo de etiqueta</h2>
+            <button class="menu-button menu-buttonDistintivo" name="distintivo" data-distintivo="ECO">ECO</button>
+            <button class="menu-button menu-buttonDistintivo" name="distintivo" data-distintivo="CERO">CERO</button>
+            <button class="menu-button menu-buttonDistintivo" name="distintivo" data-distintivo="B">B</button>
+            <button class="menu-button menu-buttonDistintivo" name="distintivo" data-distintivo="C">C</button>
+            <button class="menu-button menu-buttonDistintivo" name="distintivo" data-distintivo="SIN">Sin etiqueta</button>
+        </div>
+        <div class="menu-tipos">
+            <h2>Tipo de area</h2>
+            <button class="menu-button areas grandes active" value="Grandes áreas urbanas">Grandes</button>
+            <button class="menu-button areas pequenas active" value="Pequeñas áreas urbanas">Pequeñas</button>
+            <button class="menu-button areas nourbanas active" value="Áreas no urbanas">No urbanas</button>
+        </div>
+    </div>
+
+    <div id="info-tooltip">
+        <div id="info-details">
+            <div id="tooltip-content">
+                <div id="default-message"></div>
+                <div id="info-details">
+                    <div class="municipio" id="tooltip-municipio"></div>
+                    <div class="municipio" id="tooltip-provincia"></div>
+                    <div style="text-align: center;">
+                        <strong>Población:</strong> <span id="tooltip-poblacion"></span><br>
+                        <strong>Nº Vehículos:</strong> <span id="tooltip-tot_vehi"></span><br>
+                    </div>
+                </div>
+                
+                <div id="tooltip-bar-container" style="height: 20px; width: 100%;"></div>
+                <div id="breadcrumb"></div>
+                <div id="tooltip-table"></div>
+                <div id="edad-media-bar"></div>
+            </div>
+
+        <div id="edad-media-bar"></div>
+        <div id="color-legend-container">
+                <div id="color-legend"></div>
+                <span id="percent-symbol"></span>
+            </div> 
+               
+        <div id="edit" class="edit">
+            <div class="editText">
+                Editar mapa
+            </div>
+            <div class="iconEdit"></div>
+        </div> 
+    </div>
+</div>
+    <div id="map"></div>
+</body>
+</html>

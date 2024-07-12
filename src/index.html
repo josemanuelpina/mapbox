@@ -1,0 +1,109 @@
+
+    <script src='https://api.mapbox.com/mapbox-gl-js/v3.0.1/mapbox-gl.js'></script>
+    <link href='https://api.mapbox.com/mapbox-gl-js/v3.0.1/mapbox-gl.css' rel='stylesheet' />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/chroma-js/2.1.0/chroma.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/detectizr/2.2.0/detectizr.min.js"></script>
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <script
+    src='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.7.0/mapbox-gl-geocoder.min.js'></script>
+    <link rel='stylesheet'
+    href='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.7.0/mapbox-gl-geocoder.css'
+    type='text/css' />
+    <link rel="stylesheet" href="https://www.rtve.es/aplicaciones/infografias/rtve_2024/noticias/mapa-playas/assets/css/style-playas.css">
+    <div class="inf-rtve-fullwidth">
+        <div class="in_map_wrapper">
+            <div class="in__header">
+                <div class="in__header_logo">
+                    <img src="https://img2.rtve.es/aplicaciones/infografias/rtve_2024/noticias/mapa-playas/assets/img/logo-playas.png" alt="">
+                </div>
+                <div class="in__header_nav">
+                    <div class="in-search-bar">
+                        <div id="geocoder" class="geocoder full-width"></div>
+                    </div>
+                </div>
+                <div class="in__header_fly">
+                    <button id="btn-galicia" class="in-button b-galicia"></button>
+                    <button id="btn-cantabrico" class="in-button b-cantabria"></button>
+                    <button id="btn-cataluna" class="in-button b-mediterraneo"></button>
+                    <button id="btn-andalucia-murcia" class="in-button b-andalucia"></button>
+                    <button id="btn-canarias" class="in-button b-canarias"></button>
+                    <button id="btn-baleares" class="in-button b-baleares"></button>
+                </div>
+            </div>
+            <div id="contador-playas" class="in__info_sidebar">
+                
+            </div>
+            <div class="in__main">
+                <div class="in__main_siderbar">
+                    <div class="in__main_siderbar_header">
+                        <span></span>
+                        <h4>Filtros</h4>
+                    </div>
+                    <div class="scroll-filter">
+                        <div class="in__main_siderbar_filter services">
+                            <h3>Servicios</h3>
+                            <ul class="in-checkbox-group">
+                                <li><label><input type="checkbox" id="filtro_accesible_sillas_ruedas" value="s"> <span>Accesible en silla de ruedas</span></label></li>
+                                <li><label><input type="checkbox" id="filtro_aseos" value="s"> <span>Aseos</span></label></li>
+                                <li><label><input type="checkbox" id="filtro_alquiler_sombrillas_hamacas" value="s"> <span>Alquiler de sombrillas/hamacas</span></label></li>
+                                <li><label><input type="checkbox" id="filtro_aparcamiento" value="s"> <span>Aparcamiento</span></label></li>
+                                <li><label><input type="checkbox" id="filtro_chiringuito" value="s"> <span>Chiringuito</span></label></li>
+                                <li><label><input type="checkbox" id="filtro_duchas_lavapies" value="s"> <span>Duchas y/o lavapiés</span></label></li>
+                                <li><label><input type="checkbox" id="filtro_socorrista" value="s"> <span>Socorrista</span></label></li>
+                                <li><label><input type="checkbox" id="filtro_zona_infantil" value="s"> <span>Zona infantil</span></label></li>
+                            </ul>
+                        </div>
+                        <div class="in__main_siderbar_filter features">
+                            <h3>Características</h3>
+                            <ul class="in-checkbox-group">
+                                <li><label><input type="checkbox" id="filtro_aguas_tranquilas" value="s"> Aguas tranquilas</label></li>
+                                <li><label><input type="checkbox" id="filtro_baja_ocupacion" value="s"> Baja Ocupación</label></li>
+                                <li><label><input type="checkbox" id="filtro_nudista" value="s"> Zona nudista</label></li>
+                                <li><label><input type="checkbox" id="filtro_playa_piedras" value="s"> Playa con piedras</label></li>
+                                <li><label><input type="checkbox" id="filtro_playa_arena" value="s"> Playa de arena</label></li>
+                                <li><label><input type="checkbox" id="filtro_extensas_1km" value="s"> Playa extensa (>1km)</label></li>
+                            </ul>
+                        </div>
+                        <div class="in__main_siderbar_filter natural">
+                            <h3>Entorno natural</h3>
+                            <ul class="in-checkbox-group">
+                                <li><label><input type="checkbox" id="filtro_acantilado_montana" value="s"> Acantilado o montañas</label></li>
+                                <li><label><input type="checkbox" id="filtro_dunas" value="s"> Dunas</label></li>
+                                <li><label><input type="checkbox" id="filtro_paseo_completo" value="s"> Paseo completo</label></li>
+                                <li><label><input type="checkbox" id="filtro_playa_aislada" value="s"> Playa aislada</label></li>
+                            </ul>
+                        </div>
+                        <div class="in__main_siderbar_filter activities">
+                            <h3>Actividades</h3>
+                            <ul class="in-checkbox-group">
+                                <li><label><input type="checkbox" id="filtro_alquiler_nautico" value="s"> Alquiler náutico</label></li>
+                                <li><label><input type="checkbox" id="filtro_club_nautico" value="s"> Club náutico</label></li>
+                                <li><label><input type="checkbox" id="filtro_fondo_barcos" value="s"> Fondo para barcos</label></li>
+                                <li><label><input type="checkbox" id="filtro_submarinismo" value="s"> Submarinismo</label></li>
+                                <li><label><input type="checkbox" id="filtro_surf" value="s"> Surf</label></li>
+                                <li><label><input type="checkbox" id="filtro_zona_deportiva" value="s"> Zona deportiva</label></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="in__main_siderbar_footer_mobile">
+                        <button>Ver Lista</button>
+                    </div>
+                </div>
+                <div class="in__button_mobile">
+                    <button>Ver Filtros</button>
+                </div>
+                <div class="in__main__list">
+                    <ul id="points-list" class="in__main__list_items"></ul>
+                </div>
+                <div class="in__main__map">
+                    <div id="map" class="map"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://www.rtve.es/aplicaciones/infografias/rtve_2024/noticias/mapa-playas/assets/js/script_lista.js?v=0.1"></script>
+    <script src="https://www.rtve.es/aplicaciones/infografias/rtve_2024/noticias/mapa-playas/assets/js/script_ficha.js"></script>
+    <script src="https://www.rtve.es/aplicaciones/infografias/rtve_2024/noticias/mapa-playas/assets/js/script_app.js"></script>
+

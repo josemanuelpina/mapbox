@@ -1,0 +1,336 @@
+body {
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+    padding: 0;
+    font-family: 'Roboto', sans-serif;
+    background: #F2F2F2;
+    height: 100vh;
+    overflow: hidden;
+}
+
+#container {
+    display: flex;
+    width: 100%;
+    height: 100%;
+}
+
+#sidebar {
+    width: 25%;
+    height: 100vh;
+    padding: 15px;
+    background: white;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+    overflow-y: auto;
+    border-right: 2px solid #E0E0E0;
+    margin: 10px;
+    border-radius: 10px;
+}
+
+#list-container {
+    width: 25%;
+    height: 100vh;
+    padding: 15px;
+    background: white;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+    overflow-y: auto;
+    border-left: 2px solid #E0E0E0;
+    margin: 10px;
+    border-radius: 10px;
+}
+
+#map {
+    width: 50%;
+    height: 100vh;
+    border-radius: 10px;
+    margin: 10px;
+}
+
+.full-width {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+    border: 1px solid #BDBDBD;
+    border-radius: 10px;
+    background: #ffffff;
+}
+
+h3 {
+    margin-top: 0;
+    color: #333;
+    background: #ffffff;
+    padding: 10px;
+    border-radius: 10px;
+    font-family: 'Roboto', serif;
+}
+
+label {
+    color: #333;
+    font-weight: bold;
+    font-family: 'Roboto', sans-serif;
+}
+
+.checkbox-group {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 15px;
+}
+
+.checkbox-group label {
+    margin-bottom: 5px;
+    background: #ffffff;
+    padding: 5px;
+    border-radius: 5px;
+    font-family: 'Roboto', sans-serif;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+}
+
+.checkbox-group input {
+    margin-right: 10px;
+}
+
+#tooltip {
+    background: #FFFFFF;
+    padding: 10px;
+    border-radius: 10px;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+    margin-bottom: 15px;
+    min-height: 100px;
+    border: 1px solid #BDBDBD;
+    color: #333;
+    font-weight: bold;
+    font-size: 14px;
+    font-family: 'Roboto', sans-serif;
+}
+
+.tooltip-title {
+    font-size: 16px;
+    margin-bottom: 10px;
+    display: block;
+    font-family: 'Roboto', serif;
+    color: #333;
+}
+
+select,
+input[type="text"],
+input[type="range"] {
+    background: #ffffff;
+    border: 1px solid #BDBDBD;
+    border-radius: 5px;
+    padding: 5px;
+    color: #333;
+    font-family: 'Roboto', sans-serif;
+}
+
+select:focus,
+input[type="text"]:focus,
+input[type="range"]:focus {
+    outline: none;
+    border-color: #333;
+}
+
+input::placeholder {
+    color: #333;
+    opacity: 0.7;
+}
+
+#visible-list {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    width: 300px;
+    max-height: 400px;
+    overflow-y: auto;
+    background-color: rgba(255, 255, 255, 0.9);
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.list-item {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 10px;
+    border: 1px solid #E0E0E0;
+    border-radius: 10px;
+    padding: 10px;
+    background: #FFF;
+}
+
+.list-item img {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+    margin-bottom: 10px;
+}
+
+.list-item strong {
+    font-size: 16px;
+    color: #333;
+    display: block;
+    margin-bottom: 5px;
+}
+
+.list-item div {
+    font-size: 14px;
+    color: #757575;
+}
+
+.button-group {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.button-group button {
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    width: 100px;
+    height: 100px;
+    flex: 1;
+    margin: 5px;
+}
+
+.button-group button img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    border: none;
+}
+
+.button-group button:hover img {
+    transform: scale(1.1);
+    transition: transform 0.3s ease;
+    border: none;
+}
+
+#playa-detalle {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: white;
+    z-index: 1000;
+    overflow-y: auto;
+    padding: 20px;
+}
+
+#playa-detalle.visible {
+    display: block;
+}
+
+.atenuado {
+    color: #ccc;
+}
+
+.hidden {
+    display: none;
+}
+
+#playa-detalle button#close-playa-detalle {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: #f00;
+    color: #fff;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+}
+
+.list-item {
+    cursor: pointer;
+    transition: background-color 0.3s, box-shadow 0.3s;
+}
+
+/* Estilo para el hover en el elemento de la lista */
+.list-item:hover {
+    background-color: #cceeff;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Estilo para resaltar el punto en el mapa */
+.mapboxgl-popup {
+    transition: all 0.3s;
+}
+
+/* Estilo para resaltar el elemento de la lista */
+.resaltado-list-item {
+    background-color: #75c0e6;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    transition: background-color 0.3s, box-shadow 0.3s;
+}
+
+.mapboxgl-popup {
+    transition: none !important;
+    /*transform: none !important;*/
+}
+
+button-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+}
+.button-group button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 2px;
+    padding: 2px 5px;
+    background-color: #f0f0f0;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    font-size: 0.7rem;
+    min-width: 60px;
+    max-width: 100px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+.button-group button img {
+    width: 15px;
+    height: 15px;
+    margin-left: 3px;
+}
+
+/* Skeleton screen styles */
+.skeleton {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-bottom: 10px;
+}
+
+.skeleton-img {
+    width: 100%;
+    height: 180px;
+    background-color: #ddd;
+    margin-bottom: 10px;
+}
+
+.skeleton-text {
+    width: 100%;
+    height: 20px;
+    background-color: #ddd;
+    margin-bottom: 10px;
+}
+
+.skeleton-text:last-child {
+    width: 60%;
+}
+
+#loader-container {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    z-index: 1000;
+}
